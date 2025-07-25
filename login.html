@@ -17,22 +17,20 @@
 <body class="bg-white text-black dark:bg-gray-900 dark:text-white transition-all duration-300">
 
   <!-- Navbar -->
-  <nav class="w-full bg-white dark:bg-gray-950 shadow-md py-4 px-6 flex justify-between items-center">
-    <h1 class="text-2xl font-extrabold text-blue-500">Spirex</h1>
+  <nav class="w-full bg-white dark:bg-gray-950 shadow-md px-4 sm:px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl sm:text-2xl font-extrabold text-blue-500">Spirex</h1>
     <!-- Toggle Button -->
     <button onclick="toggleTheme()" class="relative w-20 h-10 rounded-full bg-gray-300 dark:bg-gray-700 transition-all flex items-center">
-      <!-- Thumb -->
       <span id="theme-thumb" class="absolute top-1 left-1 w-8 h-8 bg-white rounded-full shadow-md transition-all duration-300 z-10"></span>
-      <!-- Moon & Sun -->
       <span class="absolute left-2 text-xl z-20">🌙</span>
       <span class="absolute right-2 text-xl z-20">☀️</span>
     </button>
   </nav>
 
   <!-- Login Form -->
-  <section class="min-h-screen flex items-center justify-center px-6 py-16">
-    <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-xl shadow-lg w-full max-w-md">
-      <h2 class="text-2xl font-bold text-blue-500 mb-6 text-center">Admin Login</h2>
+  <section class="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16">
+    <div class="bg-gray-100 dark:bg-gray-800 p-6 sm:p-8 rounded-xl shadow-lg w-full max-w-sm sm:max-w-md">
+      <h2 class="text-2xl sm:text-3xl font-bold text-blue-500 mb-6 text-center">Admin Login</h2>
       <form onsubmit="login(event)" class="space-y-4">
         <div>
           <label class="block text-sm font-medium mb-1">Username</label>
@@ -47,7 +45,7 @@
     </div>
   </section>
 
-  <!-- Theme & Auth Scripts -->
+  <!-- Scripts -->
   <script>
     function setTheme(mode) {
       const html = document.documentElement;
@@ -74,7 +72,6 @@
       setTheme(saved);
     };
 
-    // Fake login logic
     function login(e) {
       e.preventDefault();
       const user = document.getElementById("username").value;
