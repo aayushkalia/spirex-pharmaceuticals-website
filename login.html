@@ -73,21 +73,64 @@
       const saved = localStorage.getItem("theme") || 'dark';
       setTheme(saved);
     };
+</script><script>
+  function setTheme(mode) {
+    const html = document.documentElement;
+    const thumb = document.getElementById("theme-thumb");
 
-    // Fake login logic
-    function login(e) {
-      e.preventDefault();
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
+    if (mode === "dark") {
+      html.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      if (thumb) thumb.style.left = '0.25rem';
+    } else {
+      html.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      if (thumb) thumb.style.left = '2.75rem';
+    }
+  }
 
-      if (user === "admin" && pass === "spirex123") {
+  function toggleTheme() {
+    const current = localStorage.getItem("theme") || 'dark';
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  }
+
+  window.onload = () => {
+    const saved = localStorage.getItem("theme") || 'dark';
+    setTheme(saved);
+  };
+
+  // ✅ REAL login function using fetch
+  async function login(e) {
+    e.preventDefault();
+
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+
+    try {
+      const response = await fetch("http://localhost:5000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          username: user,
+          password: pass
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
         localStorage.setItem("isLoggedIn", "true");
         window.location.href = "admin.html";
       } else {
-        alert("Invalid credentials");
+        alert(data.message || "Login failed");
       }
+    } catch (error) {
+      alert("Server error: " + error.message);
     }
-  </script>
+  }
+</script>
 
 </body>
 </html>
